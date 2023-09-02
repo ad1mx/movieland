@@ -1,0 +1,7 @@
+[
+  { "name": "Home", "href": "/" },
+  { "name": "Movies", "href": "/#movies" },
+  { "name": "Anime", "href": "/#anime" },
+  { "name": "TV Shows", "href": "/#tv-shows" },
+  { "name": "Contact", "href": "/contact" }
+]
