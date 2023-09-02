@@ -22,7 +22,7 @@ const SideBar = ({
       <Logo />
       <button
         className="sm:hidden text-2xl cursor-pointer"
-        onClick={() => setIsOpen((prev) => !prev)}
+        onClick={() => setIsOpen(false)}
       >
         <HiX />
       </button>
@@ -34,6 +34,7 @@ const SideBar = ({
           href={link.href}
           className="duration-150 py-4"
           activeStyle="text-cyan-400"
+          onClick={() => setIsOpen(false)}
         >
           {link.name}
         </ActiveLink>
