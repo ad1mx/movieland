@@ -1,18 +1,20 @@
-import { PageProps } from "@/.next/types/app/movie/[id]/page";
 import MovieDetails from "@/components/MovieDetails";
 import { getMovie } from "@/utils";
 import { notFound } from "next/navigation";
-import React from "react";
 
-export const generateMetadata = async ({ params: { id } }: PageProps) => {
+export const generateMetadata = async ({
+  params: { id },
+}: {
+  params: { id: number };
+}) => {
   const movie = await getMovie(id);
 
   return {
-    title: `MovieLand - ${movie.title}`,
+    title: `MovieLand - ${movie?.title || "Unknown"}`,
   };
 };
 
-const Movie = async ({ params: { id } }: PageProps) => {
+const Movie = async ({ params: { id } }: { params: { id: number } }) => {
   const movie = await getMovie(id);
 
   if (!movie) notFound();

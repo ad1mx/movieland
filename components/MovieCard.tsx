@@ -5,7 +5,6 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { getGenres } from "@/utils";
 import Link from "next/link";
-import { Skeleton } from "./ui/skeleton";
 
 const MovieCard = ({ movie }: { movie: ListMovie }) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -16,11 +15,14 @@ const MovieCard = ({ movie }: { movie: ListMovie }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       const res = await getGenres();
-      const upCategories = res
-        .filter((g: any) => movie.genre_ids.includes(g.id))
-        .map((c: any) => c.name);
 
-      setCategories(upCategories);
+      if (res) {
+        const upCategories = res
+          .filter((g: any) => movie.genre_ids.includes(g.id))
+          .map((c: any) => c.name);
+
+        setCategories(upCategories);
+      }
     };
 
     fetchCategories();
@@ -39,12 +41,12 @@ const MovieCard = ({ movie }: { movie: ListMovie }) => {
           alt={"Poster"}
           className={`duration-300 ${isHovering ? "scale-110" : "scale-100"}`}
         />
-        <div className="absolute left-0 right-0 top-0 p-4 flex flex-col justify-between h-full duration-350 bg-gradient-to-t from-black to-transparent hover:bg-[rgba(0,0,0,0.5)] ">
+        <div className="absolute left-0 right-0 top-0 p-4 flex flex-col justify-between h-full duration-300 transition-all bg-gradient-to-t from-black to-transparent hover:bg-[rgba(0,0,0,0.5)] ">
           <div className="flex flex-col gap-2">
             {categories.map((category: any) => (
               <p
                 key={category}
-                className={`text-sm font-bold border-l-2 border-cyan-600 duration-300 bg-[rgba(0,0,0,0.4)] w-fit py-1 px-3 rounded-full ${
+                className={`blue-badge duration-300 ${
                   isHovering
                     ? "translate-x-0 opacity-1"
                     : "translate-x-[-100%] opacity-0"

@@ -6,6 +6,7 @@ import Logo from "./Logo";
 import { usePathname } from "next/navigation";
 import ActiveLink from "./ActiveLink";
 import { HiOutlineMenuAlt4, HiX } from "react-icons/hi";
+import { motion } from "framer-motion";
 
 const SideBar = ({
   isOpen,
@@ -13,35 +14,37 @@ const SideBar = ({
 }: {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}) => (
-  <nav
-    className={`top-0 bg-gray-900 fixed right-0 p-5 h-full transition-all ease-out z-10`}
-    style={{ left: isOpen ? "30%" : "100%" }}
-  >
-    <div className="flex justify-between">
-      <Logo />
-      <button
-        className="sm:hidden text-2xl cursor-pointer"
-        onClick={() => setIsOpen(false)}
-      >
-        <HiX />
-      </button>
-    </div>
-    <div className="flex flex-col divide-y-[1px] divide-gray-800 pt-6">
-      {footerLinks.map((link) => (
-        <ActiveLink
-          key={link.href}
-          href={link.href}
-          className="duration-150 py-4"
-          activeStyle="text-cyan-400"
+}) =>
+  isOpen && (
+    <motion.nav
+      className={`sm:hidden bg-gray-900 fixed top-0 right-0 w-[70%] border-l-[1px] border-slate-800 p-5 h-full transition-all ease-out z-10`}
+      initial={{ right: "-100%" }}
+      animate={{ right: 0 }}
+    >
+      <div className="flex justify-between">
+        <Logo />
+        <button
+          className="sm:hidden text-2xl cursor-pointer"
           onClick={() => setIsOpen(false)}
         >
-          {link.name}
-        </ActiveLink>
-      ))}
-    </div>
-  </nav>
-);
+          <HiX />
+        </button>
+      </div>
+      <div className="flex flex-col divide-y-[1px] divide-gray-800 pt-6">
+        {footerLinks.map((link) => (
+          <ActiveLink
+            key={link.href}
+            href={link.href}
+            className="duration-150 py-4"
+            activeStyle="text-cyan-400"
+            onClick={() => setIsOpen(false)}
+          >
+            {link.name}
+          </ActiveLink>
+        ))}
+      </div>
+    </motion.nav>
+  );
 
 const Header = () => {
   const pathname = usePathname();

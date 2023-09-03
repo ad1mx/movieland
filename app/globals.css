@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 body::-webkit-scrollbar {
+  height: 4px;
   width: 4px;
 }
 
@@ -24,6 +25,22 @@ body::-webkit-scrollbar-thumb {
 
 .blue_gradient {
   @apply bg-gradient-to-r from-cyan-500 to-sky-700 bg-clip-text text-transparent;
+}
+
+.title {
+  @apply text-base font-extrabold blue_gradient uppercase pb-1;
+}
+
+.badge {
+  @apply text-sm font-bold border-l-2 bg-[rgba(0,0,0,0.4)] w-fit py-1 px-3 rounded-full;
+}
+
+.red-badge {
+  @apply badge border-red-600;
+}
+
+.blue-badge {
+  @apply badge border-cyan-600;
 }
 
 /* patterns */

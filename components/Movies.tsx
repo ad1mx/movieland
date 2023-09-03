@@ -14,8 +14,11 @@ const Movies = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       const res: never[] = await getMovies(pageNumber);
-      setMovies((prev) => [...prev, ...res]);
-      setIsLoading(false);
+
+      if (res) {
+        setMovies((prev) => [...prev, ...res]);
+        setIsLoading(false);
+      }
     };
 
     fetchMovies();
