@@ -14,7 +14,10 @@ export const generateMetadata = async ({
   return {
     title: `MovieLand - ${movie?.title || "Unknown"}`,
     description: movie?.overview || "",
-    other: { "og:image": `${imgsUrl}${movie?.poster_path}` },
+    other: {
+      "og:image": `${imgsUrl}${movie?.poster_path}`,
+      "twitter:card": "summary_large_image",
+    },
   };
 };
 
