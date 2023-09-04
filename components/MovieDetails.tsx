@@ -80,9 +80,7 @@ const MovieDetails = ({ movie }: { movie: Movie }) => {
         <div className="min-w-[250px] h-[400px] sm:h-[450px] sm:min-w-[300px] md:min-w-[400px] md:h-[600px] relative rounded-2xl overflow-hidden">
           <Image
             src={`${imgsUrl}${movie?.poster_path}`}
-            placeholder="blur"
             style={{ objectFit: "cover", objectPosition: "center" }}
-            blurDataURL="/movieland.png"
             fill
             alt="Cover"
           />

@@ -1,18 +1,16 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const OnlineStatusContext = createContext(true);
 
 const OnlineStatusProvider = ({ children }: { children: any }) => {
-  const [onlineStatus, setOnlineStatus] = useState(
-    typeof navigator !== "undefined" ? navigator.onLine : true
-  );
+  const [onlineStatus, setOnlineStatus] = useState(true);
 
-  if (typeof window !== "undefined") {
-    window.addEventListener("offline", () => setOnlineStatus(false));
+  useEffect(() => {
+    setOnlineStatus(navigator.onLine);
     window.addEventListener("online", () => setOnlineStatus(true));
-  }
+  }, []);
 
   return (
     <OnlineStatusContext.Provider value={onlineStatus}>

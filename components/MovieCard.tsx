@@ -1,12 +1,12 @@
 "use client";
 
-import { ListMovie } from "@/types";
+import type { ListMovie } from "@/types";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { HTMLAttributes, useEffect, useState } from "react";
 import { getGenres } from "@/utils";
 import Link from "next/link";
 
-const MovieCard = ({ movie }: { movie: ListMovie }) => {
+const MovieCard: React.FC<{ movie: ListMovie }> = ({ movie }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [categories, setCategories] = useState([]);
 

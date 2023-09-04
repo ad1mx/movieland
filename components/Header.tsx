@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import footerLinks from "@/constants/nav-links.json";
 import Logo from "./Logo";
-import { usePathname } from "next/navigation";
 import ActiveLink from "./ActiveLink";
 import { HiOutlineMenuAlt4, HiX } from "react-icons/hi";
 import { motion } from "framer-motion";
@@ -17,7 +16,7 @@ const SideBar = ({
 }) =>
   isOpen && (
     <motion.nav
-      className={`sm:hidden bg-gray-900 fixed top-0 right-0 w-[70%] border-l-[1px] border-slate-800 p-5 h-full transition-all ease-out z-10`}
+      className={`sm:hidden bg-gray-900 fixed top-0 right-0 bottom-0 w-[70%] border-l-[1px] border-slate-800 p-5 transition-all ease-out z-10`}
       initial={{ right: "-100%" }}
       animate={{ right: 0 }}
     >
@@ -47,16 +46,19 @@ const SideBar = ({
   );
 
 const Header = () => {
-  const pathname = usePathname();
-  const isRoot = pathname === "/";
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+  const [isTopPage, setIsTopPage] = useState(true);
+
+  useEffect(() => {
+    setIsTopPage(window.scrollY == 0);
+    window.addEventListener("scroll", () => setIsTopPage(window.scrollY == 0));
+  }, []);
 
   return (
     <header
-      id="header"
-      className={`main_container py-4 border-b-[1px] transition-all ${
-        isRoot ? "border-transparent" : "border-slate-800"
-      } text-slate-50 flex justify-between items-center`}
+      className={`sticky top-0 z-[5] bg-gray-900 bg-opacity-70 backdrop-blur main_container py-4 border-b-[1px] text-slate-50 flex justify-between items-center transition-[border-color] delay-300 ${
+        isTopPage ? "border-transparent" : "border-slate-800"
+      }`}
     >
       <Logo />
       {/* Desktop nav */}
@@ -65,7 +67,7 @@ const Header = () => {
           <li key={link.name}>
             <ActiveLink
               href={link.href}
-              className="duration-150"
+              className="transition-[color] hover:text-cyan-500"
               activeStyle="text-cyan-400"
             >
               {link.name}

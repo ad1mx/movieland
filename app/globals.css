@@ -8,23 +8,19 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  @apply bg-transparent;
+  @apply bg-cyan-600 bg-opacity-10;
 }
 
 body::-webkit-scrollbar-thumb {
-  @apply bg-cyan-500;
+  @apply bg-cyan-600;
 }
 
 .main_container {
   @apply px-5 md:px-10 lg:px-20 xl:px-40;
 }
 
-.primary_button {
-  @apply flex items-center px-4 py-2 rounded-full w-fit bg-cyan-600 hover:bg-cyan-700 font-bold text-base;
-}
-
 .blue_gradient {
-  @apply bg-gradient-to-r from-cyan-500 to-sky-700 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-cyan-600 to-sky-700 bg-clip-text text-transparent;
 }
 
 .title {

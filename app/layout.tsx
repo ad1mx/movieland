@@ -5,16 +5,17 @@ import Footer from "@/components/Footer";
 import Status from "@/components/Status";
 import { Roboto } from "next/font/google";
 import { Metadata } from "next";
-import OnlineStatusProvider from "@/providers/OnlineStatusProvider";
+import OnlineStatusProvider from "@/context/OnlineStatusProvider";
 
 const font = Roboto({
   weight: ["300", "500", "700", "900"],
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "MovieLand - Your Home of movies",
   description: "MovlieLand is your home for all movies, anime, TV shows...",
+  "og-title": "Test",
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
