@@ -16,6 +16,7 @@ export const metadata = {
   title: "MovieLand - Your Home of movies",
   description: "MovlieLand is your home for all movies, anime, TV shows...",
   "og-title": "Test",
+  "theme-color": "#FF0000",
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
