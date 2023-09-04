@@ -12,11 +12,10 @@ const font = Roboto({
   subsets: ["latin"],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "MovieLand - Your Home of movies",
   description: "MovlieLand is your home for all movies, anime, TV shows...",
-  "og-title": "Test",
-  "theme-color": "#FF0000",
+  other: { "theme-color": "#0891b2", "og:image": "/movieland.png" },
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
